@@ -1,0 +1,15 @@
+%form{ :action => "/search/compare", :method => "post" }
+  .row
+    .large-12.columns
+      %fieldset
+        %label{:for => "leftside"} Left Side:
+        %input{:name => "leftside", :type=>"text", :value => params["leftside"] || "HostSite=US&PerPage=25&DeveloperKey=ENTERDEVKEY"}
+  .row
+    .large-12.columns
+      %fieldset
+        %label{:for => "rightside"} Right Side:
+        %input{:name => "rightside", :type=>"text", :value => params["rightside"] || "HostSite=US&PerPage=25&DeveloperKey=ENTERDEVKEY"}
+  .row
+    .large-6.columns
+      %input{:type=>"hidden", :name=>"authenticity_token", :value=>form_authenticity_token.to_s}
+      %input{:type=>"submit"}

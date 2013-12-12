@@ -1,0 +1,23 @@
+!!!
+/DO NOT DELETE THE !!! this means <DOCTYPE>
+/[if lt IE 7 ] <html class="ie6" lang="en">
+/[if IE 7 ] <html class="ie7" lang="en">
+/[if IE 8 ] <html class="ie8" lang="en">
+/ [if (gte IE 9)|!(IE)]><!
+%html{lang: 'en'}
+  / <![endif]
+  %head
+    %meta{ charset: 'utf-8' }
+    %meta{ content: 'width=device-width, initial-scale=1.0', name: 'viewport' }
+    - if yield(:title).blank?
+      %title CareerBuilder
+    - else
+      %title= yield(:title)
+    = stylesheet_link_tag 'application', media: 'all'
+    %link{ href: '//fonts.googleapis.com/css?family=Lato:400,700', rel: 'stylesheet', type: 'text/css' }
+    = csrf_meta_tags
+    = yield :head
+  %body
+    .main-body
+      = yield
+    = javascript_include_tag "application"

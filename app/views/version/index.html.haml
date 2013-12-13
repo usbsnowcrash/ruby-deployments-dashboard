@@ -3,18 +3,15 @@
     %h1 ChangeLog
 .row
   .small-12.columns
-    Deployment title:
-    %span
-      = @thispull['title']
+    = @thispull['title']
 .row
   .small-12.columns
-    Date/time:
-    %span
-      = DateTime.parse(@thispull['merged_at']).in_time_zone("Eastern Time (US & Canada)").strftime('%m/%d/%Y | %I:%M %p EST')
+    Deployment started
+    = DateTime.parse(@thispull['merged_at']).in_time_zone("Eastern Time (US & Canada)").strftime('%m/%d/%Y | %I:%M %p EST')
 
 %br
 .row
-  .small-12.columns.back-link
+  .small-12.columns.end-of-header
     = link_to 'Back to all deployments', main_app.deployments_path
 
 .row

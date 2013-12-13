@@ -1,28 +1,16 @@
 .row
   .small-12.columns
-    %h1
-      = "What was deployed on #{DateTime.parse(@thispull['merged_at']).strftime('%m/%d/%Y at %I:%M %p')}?"
-.row
-  .small-12.columns
-    %h4
-      Deployment title:
-      %span.no-bold
-        = @thispull["title"]
+    %h1 What was deployed then?
+    =@thispull["title"]
+    =DateTime.parse(@thispull['merged_at']).strftime('%m/%d/%Y // %I:%M%p')
 
 .row
   .small-12.columns
     %h2 Changes to CB-Mobile
 - @commits.each do |commit|
-  .row.commit
-    .small-3.columns
-      - unless commit["author"].nil?
-        = image_tag(commit["author"]["avatar_url"], class: 'gravatar')
-      - else
-        = image_tag('https://i2.wp.com/a248.e.akamai.net/assets.github.com/images/gravatars/gravatar-user-420.png', class: 'gravatar')
-      = commit['commit']['author']['name']
-    .small-9.columns
-      = link_to commit['commit']['message'], commit['html_url']
-
+  .row
+    .small-12.columns
+      = link_to commit["commit"]["message"], commit["html_url"]
 
 .row
   .small-12.columns

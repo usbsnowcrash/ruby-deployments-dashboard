@@ -1,6 +1,13 @@
 .row
   .small-12.columns
     %h1 CBMTN Deployments
+.row.commit
+  .small-3.large-3.columns
+    Deployer
+  .small-9.large-6.columns
+    Title
+  .small-12.large-3.columns
+    Deployment Started
 - @pulls.each do |pull|
   .row.commit
     .small-3.large-3.columns
@@ -9,4 +16,4 @@
     .small-9.large-6.columns
       = link_to pull['title'], main_app.version_path(:id => pull['number'].to_s)
     .small-12.large-3.columns
-      = DateTime.parse(pull['merged_at']).strftime('%m/%d/%Y // %I:%M%p')
+      = DateTime.parse(pull['merged_at']).in_time_zone("Eastern Time (US & Canada)").strftime('%m/%d/%Y | %I:%M %p EST')

@@ -1,13 +1,21 @@
 .row
   .small-12.columns
-    %h1
-      = "What was deployed on #{DateTime.parse(@thispull['merged_at']).strftime('%m/%d/%Y at %I:%M %p')}?"
+    %h1 ChangeLog
 .row
   .small-12.columns
-    %h4
-      Deployment title:
-      %span.no-bold
-        = @thispull['title']
+    Deployment title:
+    %span
+      = @thispull['title']
+.row
+  .small-12.columns
+    Date/time:
+    %span
+      = DateTime.parse(@thispull['merged_at']).in_time_zone("Eastern Time (US & Canada)").strftime('%m/%d/%Y | %I:%M %p EST')
+
+%br
+.row
+  .small-12.columns
+    = link_to 'Back to all deployments', main_app.deployments_path
 
 .row
   .small-12.columns
@@ -22,7 +30,6 @@
       = commit['commit']['author']['name']
     .small-9.columns
       = link_to commit['commit']['message'], commit[:html_url]
-
 
 .row
   .small-12.columns

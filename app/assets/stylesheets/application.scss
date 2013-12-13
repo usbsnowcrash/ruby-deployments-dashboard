@@ -3,9 +3,13 @@
 body {
   margin: 1em;
   line-height: 1.5em;
+  font-family: 'Raleway', sans-serif;
 }
-.no-bold {
-  font-weight: normal;
+h1, h2 {
+  font-family: 'Shadows Into Light Two', cursive;
+}
+h3, h4, h5, h6 {
+  font-family: 'Raleway', sans-serif;
 }
 .gravatar {
   width: 30px;

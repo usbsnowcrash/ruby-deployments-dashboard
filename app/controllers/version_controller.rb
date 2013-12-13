@@ -2,16 +2,27 @@ require 'json'
 require 'httparty'
 
 class VersionController < ApplicationController
-  def index
+  def details
+    @thispull = version_info
+    @commits = version_commits
+    find_jobsearch_changes find_gemfile_changes
+  end
+
+  private
+
+  def version_info
     pullurl = 'https://api.github.com/repos/cbdr/CB-Mobile/pulls/' + params['id'] + '?access_token=15d13e3ca0aa8c8e8f5d9174d48e1b995b5d7450'
     pullresp = HTTParty.get(pullurl, :headers => {"User-Agent" => 'ruby'})
-    @thispull = JSON.parse(pullresp.body)
+    thispull = JSON.parse(pullresp.body)
+  end
 
+  def version_commits
     url = 'https://api.github.com/repos/cbdr/CB-Mobile/pulls/' + params['id'] + '/commits?access_token=15d13e3ca0aa8c8e8f5d9174d48e1b995b5d7450'
     resp = HTTParty.get(url, :headers => {"User-Agent" => 'ruby'})
-    @commits = JSON.parse(resp.body)
+    commits = JSON.parse(resp.body)
+  end
 
-
+  def find_gemfile_changes
     url2 = 'https://api.github.com/repos/cbdr/CB-Mobile/pulls/' + params['id'] + '/files?access_token=15d13e3ca0aa8c8e8f5d9174d48e1b995b5d7450'
     resp2 = HTTParty.get(url2, :headers => {"User-Agent" => 'ruby'})
     @files = JSON.parse(resp2.body)
@@ -23,9 +34,13 @@ class VersionController < ApplicationController
     end
 
     patches_to_parse.each do |patch|
-      #refs.concat patch.scan(/gem 'job-search', +git: +'git@github.com:cbdr\/JobSearch.git', +ref: ?'(\w+)'/)
       refs.concat patch.scan(/ref: ?'(\w+)'/) if patch.nil? == false
     end
+    refs
+  end
+
+  def find_jobsearch_changes(refs)
+
 
     dates = []
     refs.each do |sha|
@@ -51,6 +66,5 @@ class VersionController < ApplicationController
         @jobsearch_changes << hashy  if closed_date <= max_date && closed_date >= min_date
       end
     end
-
   end
 end

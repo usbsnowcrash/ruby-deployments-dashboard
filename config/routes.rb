@@ -1,7 +1,7 @@
 Searchtester::Application.routes.draw do
   get "search", to: 'search#index'
   get "search/stupid", to: 'search#stupid'
-  get "version/:id", to: 'version#index' , as: 'version'
+  get "deployment/:id", to: 'version#index' , as: 'version'
   get "deployments/", to: 'version#dashboard' , as: 'deployments'
   post "search/compare"
 

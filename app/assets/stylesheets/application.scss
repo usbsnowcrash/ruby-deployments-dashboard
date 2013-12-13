@@ -22,3 +22,18 @@ h3, h4, h5, h6 {
 .commit {
   margin-bottom: 1em;
 }
+.back-link, .commit-message {
+  border-bottom: 1px solid #eee;
+  padding-bottom: .5em;
+}
+.repo-header {
+  padding: .5em 0;
+}
+.commit-message {
+  margin-top: .5em;
+}
+@media only screen and (min-width: 768px) {
+  .commit-message {
+    margin-top: 0;
+  }
+}

@@ -1,0 +1,7 @@
+
+
+Started GET "/version/164" for 127.0.0.1 at 2013-12-13 03:23:52 -0500
+Processing by VersionController#index as HTML
+  Parameters: {"id"=>"164"}
+  Rendered version/index.html.haml within layouts/application (28.7ms)
+Completed 200 OK in 3083ms (Views: 1231.7ms)

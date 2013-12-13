@@ -2,7 +2,7 @@ require 'json'
 require 'httparty'
 
 class VersionController < ApplicationController
-  def details
+  def index
     @thispull = version_info
     @commits = version_commits
     find_jobsearch_changes find_gemfile_changes

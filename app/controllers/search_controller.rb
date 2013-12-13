@@ -19,9 +19,14 @@ class SearchController < ApplicationController
   end
 
   def stupid
+
     url = 'https://api.github.com/repos/cbdr/CB-Mobile/pulls?state=closed&base=production&access_token=15d13e3ca0aa8c8e8f5d9174d48e1b995b5d7450'
     resp = HTTParty.get(url, :headers => {"User-Agent" => 'ruby'})
-    @pulls = JSON.parse(resp.body)
+    unfiltered_pulls = JSON.parse(resp.body)
+    @pulls = []
+    unfiltered_pulls.each do |pull|
+      @pulls << pull if pull["merged_at"].nil? == false
+    end
   end
 
   def version

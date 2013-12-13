@@ -1,13 +1,23 @@
-%h1 Version Detail
+.row
+  .small-12.columns
+    %h1 What was deployed then?
 
-%h2 Changes to CB-Mobile
+.row
+  .small-12.columns
+    %h2 Changes to CB-Mobile
 - @commits.each do |commit|
   .row
-    .large-12.columns
+    .small-12.columns
       = link_to commit["commit"]["message"], commit["html_url"]
 
-%h2 Changes to JobSearch
+.row
+  .small-12.columns
+    %h2 Changes to JobSearch
 - @jobsearch_changes.each do |change|
   .row
-    .large-12.columns
+    .small-12.columns
       = link_to change[:title], change[:url]
+- if @jobsearch_changes.count == 0
+  .row
+    .small-12.columns
+      No changes

@@ -4,3 +4,17 @@ body {
   margin: 1em;
   line-height: 1.5em;
 }
+.no-bold {
+  font-weight: normal;
+}
+.gravatar {
+  width: 30px;
+  border-radius: 3px;
+  -webkit-box-shadow: 1px 1px 5px 2px rgba(221,221,221,1);
+  -moz-box-shadow: 1px 1px 5px 2px rgba(221,221,221,1);
+  box-shadow: 1px 1px 5px 2px rgba(221,221,221,1);
+  margin: 0 5px;
+}
+.commit {
+  margin-bottom: 1em;
+}

@@ -62,7 +62,7 @@ class VersionController < ApplicationController
 
       jobsearch_pulls.each do |jspull|
         closed_date = DateTime.parse(jspull["closed_at"])
-        hashy = {:title => jspull["title"],:url => jspull["html_url"]}
+        hashy = {:title => jspull["title"],:url => jspull["html_url"],:user => jspull["user"]}
         @jobsearch_changes << hashy  if closed_date <= max_date && closed_date >= min_date
       end
     end

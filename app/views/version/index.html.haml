@@ -1,6 +1,8 @@
 .row
   .small-12.columns
     %h1 What was deployed then?
+    =@thispull["title"]
+    =DateTime.parse(@thispull['merged_at']).strftime('%m/%d/%Y // %I:%M%p')
 
 .row
   .small-12.columns

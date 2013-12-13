@@ -3,6 +3,10 @@ require 'httparty'
 
 class VersionController < ApplicationController
   def index
+    pullurl = 'https://api.github.com/repos/cbdr/CB-Mobile/pulls/' + params['id'] + '?access_token=15d13e3ca0aa8c8e8f5d9174d48e1b995b5d7450'
+    pullresp = HTTParty.get(pullurl, :headers => {"User-Agent" => 'ruby'})
+    @thispull = JSON.parse(pullresp.body)
+
     url = 'https://api.github.com/repos/cbdr/CB-Mobile/pulls/' + params['id'] + '/commits?access_token=15d13e3ca0aa8c8e8f5d9174d48e1b995b5d7450'
     resp = HTTParty.get(url, :headers => {"User-Agent" => 'ruby'})
     @commits = JSON.parse(resp.body)

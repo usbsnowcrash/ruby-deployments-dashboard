@@ -4,10 +4,10 @@
 - @commits.each do |commit|
   .row
     .large-12.columns
-      =commit["commit"]["message"]
+      = link_to commit["commit"]["message"], commit["html_url"]
 
 %h2 Changes to JobSearch
 - @jobsearch_changes.each do |change|
   .row
     .large-12.columns
-      =change
+      = link_to change[:title], change[:url]

@@ -26,7 +26,7 @@
         = image_tag('https://i2.wp.com/a248.e.akamai.net/assets.github.com/images/gravatars/gravatar-user-420.png', class: 'gravatar')
       = commit['commit']['author']['name']
     .small-12.large-9.columns.commit-message
-      = link_to commit['commit']['message'], commit[:html_url]
+      = link_to commit['commit']['message'], commit['html_url']
 
 .row
   .small-12.columns

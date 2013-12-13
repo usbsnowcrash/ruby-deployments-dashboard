@@ -1,0 +1,13 @@
+%h1 Version Detail
+
+%h2 Changes to CB-Mobile
+- @commits.each do |commit|
+  .row
+    .large-12.columns
+      =commit["commit"]["message"]
+
+%h2 Changes to JobSearch
+- @jobsearch_changes.each do |change|
+  .row
+    .large-12.columns
+      =change

@@ -2,6 +2,6 @@
 - @pulls.each do |pull|
   .row
     .large-6.columns
-      = link_to pull["title"], 'versions/' + pull["number"].to_s
+      = link_to pull["title"], main_app.version_path(:id => pull["number"].to_s)
     .large-6.columns
       =pull["merged_at"]

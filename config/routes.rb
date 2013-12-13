@@ -1,5 +1,7 @@
 Searchtester::Application.routes.draw do
-  get "search/index"
+  get "search", to: 'search#index'
+  get "search/stupid", to: 'search#stupid'
+  get "version/:id", to: 'version#index' , as: 'version'
   post "search/compare"
 
   constraints(:host => /scrum.cbmtn.io/) do

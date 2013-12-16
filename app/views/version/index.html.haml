@@ -3,11 +3,11 @@
     %h1 ChangeLog
 .row
   .small-12.columns
-    = @thispull['title']
+    = @thispull.title
 .row
   .small-12.columns
     Deployment started
-    = DateTime.parse(@thispull['merged_at']).in_time_zone("Eastern Time (US & Canada)").strftime('%m/%d/%Y | %I:%M %p EST')
+    = @thispull.merged_at.in_time_zone("Eastern Time (US & Canada)").strftime('%m/%d/%Y | %I:%M %p EST')
 
 %br
 .row
@@ -20,13 +20,13 @@
 - @commits.each do |commit|
   .row.commit
     .small-12.large-3.columns
-      - unless commit['author'].nil?
-        = image_tag(commit['author']['avatar_url'], class: 'gravatar')
+      - unless commit.author.nil?
+        = image_tag(commit.author.avatar_url, class: 'gravatar')
       - else
         = image_tag('https://i2.wp.com/a248.e.akamai.net/assets.github.com/images/gravatars/gravatar-user-420.png', class: 'gravatar')
-      = commit['commit']['author']['name']
+      = commit.commit.author.name
     .small-12.large-9.columns.commit-message
-      = link_to commit['commit']['message'], commit['html_url']
+      = link_to commit.commit.message, commit.html_url
 
 .row
   .small-12.columns
@@ -34,10 +34,10 @@
 - @jobsearch_changes.each do |change|
   .row.commit
     .small-12.large-3.columns
-      = image_tag(change[:user]['avatar_url'], class: 'gravatar')
-      = change[:user]['login']
+      = image_tag(change.user.avatar_url, class: 'gravatar')
+      = change.user.login
     .small-12.large-9.columns.commit-message
-      = link_to change[:title], change[:url]
+      = link_to change.title, change.url
 - if @jobsearch_changes.count == 0
   .row
     .small-12.columns

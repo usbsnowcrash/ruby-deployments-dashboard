@@ -13,6 +13,7 @@ gem 'figaro'
 gem 'haml-rails'
 gem 'zurb-foundation'
 gem 'httparty'
+gem 'github_api'
 
 group :development do
   gem 'better_errors'

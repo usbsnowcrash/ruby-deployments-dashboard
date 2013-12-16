@@ -1,7 +1,17 @@
 require 'json'
 require 'httparty'
+require 'github_api'
 
 class VersionController < ApplicationController
+  def initialize
+    super
+    @github = Github.new do |config|
+      config.oauth_token = '15d13e3ca0aa8c8e8f5d9174d48e1b995b5d7450'
+      config.org = 'cbdr'
+      config.auto_pagination = true
+    end
+  end
+
   def dashboard
     url = 'https://api.github.com/repos/cbdr/CB-Mobile/pulls?state=closed&base=production&access_token=15d13e3ca0aa8c8e8f5d9174d48e1b995b5d7450'
     resp = HTTParty.get(url, :headers => {"User-Agent" => 'ruby'})
@@ -50,8 +60,6 @@ class VersionController < ApplicationController
   end
 
   def find_jobsearch_changes(refs)
-
-
     dates = []
     refs.each do |sha|
       url3 = 'https://api.github.com/repos/cbdr/JobSearch/commits/' + sha[0].to_s + '?access_token=15d13e3ca0aa8c8e8f5d9174d48e1b995b5d7450'
@@ -64,17 +72,15 @@ class VersionController < ApplicationController
     if dates.count >= 2
       max_date = dates.max
       min_date = dates.min
+      pulls = @github.pull_requests.all(:user => 'cbdr', :repo => 'JobSearch', :state => 'closed')
 
-      url4 = 'https://api.github.com/repos/cbdr/JobSearch/pulls?state=closed&base=master&access_token=15d13e3ca0aa8c8e8f5d9174d48e1b995b5d7450'
-      resp4 = HTTParty.get(url4, :headers => {"User-Agent" => 'ruby'})
-      jobsearch_pulls = JSON.parse(resp4.body)
+       pulls.each do |pull|
+        closed_date = DateTime.parse(pull["closed_at"])
 
-
-      jobsearch_pulls.each do |jspull|
-        closed_date = DateTime.parse(jspull["closed_at"])
-        hashy = {:title => jspull["title"],:url => jspull["html_url"],:user => jspull["user"]}
-        @jobsearch_changes << hashy  if closed_date <= max_date && closed_date >= min_date
+        hashy = {:title => pull["title"],:url => pull["html_url"],:user => pull["user"]}
+        @jobsearch_changes << hashy if closed_date <= max_date && closed_date >= min_date
       end
+
     end
   end
 end

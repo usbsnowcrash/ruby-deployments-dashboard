@@ -21,3 +21,4 @@ doc/
 log
 .idea
 .elasticbeanstalk/
+coverage/

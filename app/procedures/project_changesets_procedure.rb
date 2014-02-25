@@ -15,7 +15,7 @@ class ProjectChangeSetsProcedure < BaseProcedure
 
   def github
     Github.new do |config|
-      config.oauth_token = '15d13e3ca0aa8c8e8f5d9174d48e1b995b5d7450'
+      config.oauth_token = ENV['GITHUB_TOKEN']
       config.org = 'cbdr'
       config.auto_pagination = true
     end

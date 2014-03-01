@@ -4,6 +4,6 @@ class VersionController < ApplicationController
   end
 
   def index
-    @view_data = ProjectChangeSetsProcedure.new(self,params,session).view_data
+    @view_data = ProjectChangesetsProcedure.new(self,params,session).view_data
   end
 end

@@ -1,6 +1,4 @@
-#require 'services/compare_searches_service'
-
-class ProjectChangeSetsProcedure < BaseProcedure
+class ProjectChangesetsProcedure < BaseProcedure
   ViewData = Struct.new(:this_pull, :commits, :jobsearch_changes)
 
   def view_data

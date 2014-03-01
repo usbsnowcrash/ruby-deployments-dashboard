@@ -1,5 +1,3 @@
-#require 'services/compare_searches_service'
-
 class DeploymentLogProcedure < BaseProcedure
   ViewData = Struct.new(:pulls)
 

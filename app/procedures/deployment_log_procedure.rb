@@ -1,23 +1,15 @@
+require 'services/pull_request_service'
+
 class DeploymentLogProcedure < BaseProcedure
   ViewData = Struct.new(:pulls)
 
   def view_data
-    unfiltered_pulls = github.pull_requests.all(:user => 'cbdr', :repo => 'CB-Mobile', :state => 'closed', :base => 'production')
-    pulls = []
-    unfiltered_pulls.each do |pull|
-      pulls << pull if pull.merged_at.nil? == false
-    end
-
-    ViewData.new pulls
+    ViewData.new Services::PullRequestService.new(pulls_request).pull_requests
   end
 
   private
 
-  def github
-    Github.new do |config|
-      config.oauth_token = ENV['GITHUB_TOKEN']
-      config.org = 'cbdr'
-      config.auto_pagination = true
-    end
+  def pulls_request
+    Services::Requests::PullsRequest.new('cbdr', 'CB-Mobile', 'closed', 'production')
   end
 end

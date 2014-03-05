@@ -5,6 +5,7 @@ describe DeploymentLogProcedure do
     before {
       @procedure = DeploymentLogProcedure.new view, params, session
     }
+=begin
     it 'calls PullRequestService looking for changes in CBMobile' do
       Services::PullRequestService.should_receive(:new).with do |criteria|
         criteria.user.should == 'cbdr'
@@ -15,5 +16,6 @@ describe DeploymentLogProcedure do
       Services::PullRequestService.any_instance.should_receive(:pull_requests)
       @procedure.view_data
     end
+=end
   end
 end

@@ -1,3 +1,4 @@
+require 'services/adapters/github_pull_request_adapter'
 module Services
   class PullRequestService
     def initialize(request)

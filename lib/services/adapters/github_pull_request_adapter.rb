@@ -1,3 +1,4 @@
+require 'services/models/pull_request'
 module Services
   module ApiAdapters
     class GithubPullRequestAdapter

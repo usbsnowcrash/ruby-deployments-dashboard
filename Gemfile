@@ -17,18 +17,36 @@ gem 'github_api'
 
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
-  gem 'html2haml'
-  gem 'quiet_assets'
+  gem 'binding_of_caller'
+  gem 'dotenv-rails'
 end
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'thin', '~> 1.6'
+  gem 'pry-debugger', '~> 0.2'
 end
 
 group :test do
-  gem 'capybara'
-  gem 'database_cleaner', '1.0.1'
-  gem 'email_spec'
+  gem 'capybara', '~> 2.1.0'
+  gem 'rspec-rails', '~> 2.0'
+  gem 'rspec-pride', '~> 2.2.0'
+  gem 'simplecov', '~> 0.8'
+  gem 'poltergeist', '~> 1.4.1'
+  gem 'capybara-screenshot', '~> 0.3'
+  gem 'hashie', '~> 2.0'
 end
 
+group :staging, :production do
+  gem 'dalli', '~> 2.7'
+end
+
+def can_load_dot_env?
+  begin
+    gem 'dotenv', '~> 0.9'
+    require 'dotenv'
+    Dotenv.load
+    true
+  rescue LoadError
+    false
+  end
+end

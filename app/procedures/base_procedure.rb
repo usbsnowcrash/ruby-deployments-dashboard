@@ -9,6 +9,6 @@ class BaseProcedure
   end
 
   def view_data
-    raise NotImplementedError.new "need to implement #view_data"
+    fail NotImplementedError.new 'need to implement #view_data'
   end
 end

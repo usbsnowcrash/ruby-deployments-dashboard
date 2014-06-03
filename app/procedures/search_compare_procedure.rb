@@ -12,7 +12,6 @@ class SearchCompareProcedure < BaseProcedure
   private
 
   def compare_request
-    Services::Requests::SearchComparisonRequest.new params['leftside'],params['rightside']
+    Services::Requests::SearchComparisonRequest.new params['leftside'], params['rightside']
   end
-
 end

@@ -12,4 +12,8 @@ Searchtester::Application.routes.draw do
   constraints(:host => /oncall.cbmtn.io/) do
     get '/', to: redirect {|p, req| "https://cbapi.pagerduty.com/" }
   end
+
+  constraints(:host => /cloud.cbmtn.io/) do
+    get '/', to: redirect {|p, req| "https://console.aws.amazon.com/elasticbeanstalk/home?region=us-east-1#/applications?applicationNameFilter="}
+  end
 end

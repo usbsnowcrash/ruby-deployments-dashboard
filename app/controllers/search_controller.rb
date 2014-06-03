@@ -3,6 +3,6 @@ class SearchController < ApplicationController
   end
 
   def compare
-    @view_data = SearchCompareProcedure.new(self,params,session).view_data
+    @view_data = SearchCompareProcedure.new(self, params, session).view_data
   end
 end

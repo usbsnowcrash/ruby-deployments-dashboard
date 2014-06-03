@@ -2,8 +2,8 @@ class ProjectChangesetsProcedure < BaseProcedure
   ViewData = Struct.new(:this_pull, :commits, :jobsearch_changes)
 
   def view_data
-    thispull = github.pull_requests.get(:user => 'cbdr', :repo => 'CB-Mobile', :number => params['id'])
-    commits = github.pull_requests.commits(:user => 'cbdr', :repo => 'CB-Mobile', :number => params['id'])
+    thispull = github.pull_requests.get(user: 'cbdr', repo: 'CB-Mobile', number: params['id'])
+    commits = github.pull_requests.commits(user: 'cbdr', repo: 'CB-Mobile', number: params['id'])
     jobsearch_changes = find_jobsearch_changes find_gemfile_changes
 
     ViewData.new(thispull, commits, jobsearch_changes)
@@ -20,12 +20,12 @@ class ProjectChangesetsProcedure < BaseProcedure
   end
 
   def find_gemfile_changes
-    files = github.pull_requests.files(:user => 'cbdr', :repo => 'CB-Mobile', :number => params['id'])
+    files = github.pull_requests.files(user: 'cbdr', repo: 'CB-Mobile', number: params['id'])
 
     patches_to_parse = []
     refs = []
     files.each do |file|
-      patches_to_parse << file.patch if file.filename = "Gemfile"
+      patches_to_parse << file.patch if file.filename = 'Gemfile'
     end
 
     patches_to_parse.each do |patch|
@@ -40,17 +40,17 @@ class ProjectChangesetsProcedure < BaseProcedure
 
     refs.each do |sha|
       begin
-        commit = github.repos.commits.get(:user => 'cbdr', :repo => 'JobSearch', :sha => sha[0].to_s)
-        dates << DateTime.parse(commit["commit"]["author"]["date"]) if commit["commit"].nil? == false
+        commit = github.repos.commits.get(user: 'cbdr', repo: 'JobSearch', sha: sha[0].to_s)
+        dates << DateTime.parse(commit['commit']['author']['date']) if commit['commit'].nil? == false
       rescue
-        #didn't find this commit
+        # didn't find this commit
       end
     end
 
     if dates.count >= 2
       max_date = dates.max
       min_date = dates.min
-      pulls = github.pull_requests.all(:user => 'cbdr', :repo => 'JobSearch', :state => 'closed',:base => 'master')
+      pulls = github.pull_requests.all(user: 'cbdr', repo: 'JobSearch', state: 'closed', base: 'master')
 
       pulls.each do |pull|
         closed_date = DateTime.parse(pull.closed_at)

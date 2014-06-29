@@ -11,8 +11,10 @@
 
 %br
 .row
-  .small-12.columns.end-of-header
+  .small-6.columns.end-of-header
     = link_to 'Back to all deployments', main_app.deployments_path
+  .small-6.columns.end-of-header
+    = link_to 'Compare to previous version', "https://github.com/cbdr/#{params[:repo_name]}/pull/#{params[:pull_id]}/files"
 
 .row
   .small-12.columns

@@ -1,6 +1,7 @@
 .row
   .small-12.columns
-    %h1 CBMTN Deployments
+    %h1
+      = "#{params[:repo_name]} Deployments".titlecase
 .row.commit
   .small-12.columns.end-of-header
     Deployer / Title / Deployment Started
@@ -11,6 +12,6 @@
       = image_tag(pull.user_avatar, class: 'gravatar')
       = pull.user_login
     .small-12.large-6.columns.deployment-message
-      = link_to pull.title, main_app.version_path(:id => pull.pull_number.to_s)
+      = link_to pull.title, main_app.version_path(:pull_id => pull.pull_number.to_s)
     .small-12.large-3.columns.deployment-time
       = pull.merged_at

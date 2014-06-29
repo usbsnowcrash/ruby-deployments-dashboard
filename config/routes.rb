@@ -1,9 +1,7 @@
 Searchtester::Application.routes.draw do
-  #get "", to: 'version#dashboard' , as: 'default'
-  get "search", to: 'search#index'
-  get "deployments/:id", to: 'version#index' , as: 'version'
-  get "deployments/", to: 'version#dashboard' , as: 'deployments'
-  post "search/compare"
+  get 'deployments', to: 'version#index', as: 'dashboard'
+  get 'deployments/:repo_name/:pull_id', to: 'version#index' , as: 'version'
+  get 'deployments/:repo_name', to: 'version#dashboard' , as: 'deployments'
 
   constraints(:host => /scrum.cbmtn.io/) do
     get '/', to: redirect {|p, req| "https://careerbuilder.mingle.thoughtworks.com/projects/" }

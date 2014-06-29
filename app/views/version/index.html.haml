@@ -16,7 +16,8 @@
 
 .row
   .small-12.columns
-    %h2.repo-header Changes to CB-Mobile
+    %h2.repo-header
+      = "Changes to #{params[:repo_name]}"
 - @view_data.commits.each do |commit|
   .row.commit
     .small-12.large-3.columns
@@ -27,18 +28,3 @@
       = commit.commit.author.name
     .small-12.large-9.columns.commit-message
       = link_to commit.commit.message, commit.html_url
-
-.row
-  .small-12.columns
-    %h2.repo-header Changes to JobSearch
-- @view_data.jobsearch_changes.each do |change|
-  .row.commit
-    .small-12.large-3.columns
-      = image_tag(change.user.avatar_url, class: 'gravatar')
-      = change.user.login
-    .small-12.large-9.columns.commit-message
-      = link_to change.title, change.html_url
-- if @view_data.jobsearch_changes.count == 0
-  .row
-    .small-12.columns
-      No changes

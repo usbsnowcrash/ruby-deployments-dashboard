@@ -11,6 +11,6 @@ class DeploymentLogProcedure < BaseProcedure
   private
 
   def pulls_request
-    Services::Requests::PullsRequest.new('cbdr', 'CB-Mobile', 'closed', 'production')
+    Services::Requests::PullsRequest.new('cbdr', @params[:repo_name], 'closed', 'production')
   end
 end

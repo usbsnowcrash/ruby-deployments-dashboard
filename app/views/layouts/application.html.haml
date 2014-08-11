@@ -13,8 +13,8 @@
       %title CareerBuilder
     - else
       %title= yield(:title)
+    %link{ href: 'http://fonts.googleapis.com/css?family=Raleway', rel: 'stylesheet', type: 'text/css' }
     = stylesheet_link_tag 'application', media: 'all'
-    %link{ href: 'http://fonts.googleapis.com/css?family=Shadows+Into+Light+Two|Raleway', rel: 'stylesheet', type: 'text/css' }
     = csrf_meta_tags
     = yield :head
   %body

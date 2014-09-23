@@ -15,9 +15,9 @@ body {
 }
 .commit {
   margin-bottom: 1em;
+  border-bottom: 1px solid #eee;
 }
 .end-of-header, .commit-message, .deployment-time {
-  border-bottom: 1px solid #eee;
   padding-bottom: .5em;
 }
 .repo-header {
@@ -31,7 +31,6 @@ body {
     margin-top: 0;
   }
   .deployment-message {
-    border-bottom: 1px solid #eee;
     padding-bottom: .5em;
   }
 }

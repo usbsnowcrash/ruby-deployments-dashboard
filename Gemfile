@@ -22,7 +22,6 @@ end
 
 group :development, :test do
   gem 'thin', '~> 1.6'
-  gem 'pry-debugger', '~> 0.2'
 end
 
 group :test do
@@ -40,12 +39,10 @@ group :staging, :production do
 end
 
 def can_load_dot_env?
-  begin
-    gem 'dotenv', '~> 0.9'
-    require 'dotenv'
-    Dotenv.load
-    true
-  rescue LoadError
-    false
-  end
+  gem 'dotenv', '~> 0.9'
+  require 'dotenv'
+  Dotenv.load
+  true
+rescue LoadError
+  false
 end

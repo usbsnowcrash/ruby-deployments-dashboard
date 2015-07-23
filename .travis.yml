@@ -1,0 +1,11 @@
+language: ruby
+
+bundler_args: '--binstubs --without documentation'
+before_install: gem install bundler
+
+rvm:
+  - 2.0.0
+
+addons:
+  code_climate:
+    repo_token: 92dec08ac9d7712e92f67db91b5c472c301b22d26e60369c6bb563384a062a4e

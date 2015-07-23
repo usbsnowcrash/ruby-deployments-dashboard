@@ -28,7 +28,7 @@ module Services
       end
 
       def pull_requests
-        github_api.pull_requests.all(:user => @request.user, :repo => @request.repo, :state => @request.state, :base => @request.base)
+        github_api.pull_requests.all(user: @request.user, repo: @request.repo, state: @request.state, base: @request.base)
       end
 
       def convert_to_pull_model(pull)
@@ -36,7 +36,7 @@ module Services
                                           pull.user.avatar_url,
                                           pull.title,
                                           pull.number,
-                                          pull.merged_at.in_time_zone("Eastern Time (US & Canada)").strftime('%m/%d/%Y | %I:%M %p EST'))
+                                          pull.merged_at.in_time_zone('Eastern Time (US & Canada)').strftime('%m/%d/%Y | %I:%M %p EST'))
       end
     end
   end

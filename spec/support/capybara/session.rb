@@ -1,21 +1,20 @@
 module Capybara
   class Session
-
     def wait_until_path_eq(path)
-      wait_until {
+      wait_until do
         current_path_with_qs == path
-      }
+      end
     end
 
     def wait_until_path_not_eq(path)
-      wait_until {
+      wait_until do
         current_path_with_qs != path
-      }
+      end
     end
 
     def wait_until(timeout = Capybara.default_wait_time, &block)
       start = Time.now
-      while true
+      loop do
         break if block.call
         if Time.now > start + timeout
           fail "Expected condition failed: \n#{block.source}"
@@ -30,6 +29,5 @@ module Capybara
       uri = URI.parse(current_url)
       "#{uri.path}?#{uri.query}"
     end
-
   end
 end

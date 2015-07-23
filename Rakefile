@@ -4,5 +4,3 @@
 require File.expand_path('../config/application', __FILE__)
 
 Searchtester::Application.load_tasks
-
-

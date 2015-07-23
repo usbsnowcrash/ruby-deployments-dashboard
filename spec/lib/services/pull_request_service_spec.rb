@@ -3,7 +3,7 @@ require 'services/pull_request_service'
 
 module Services
   describe PullRequestService do
-    let(:service){Services::PullRequestService.new(Services::Requests::PullsRequest.new('user', 'repo', 'state', 'base'))}
+    let(:service) { Services::PullRequestService.new(Services::Requests::PullsRequest.new('user', 'repo', 'state', 'base')) }
     context '#merged_pull_requests' do
       it 'constructs the adapter and passes the request to it' do
         Services::ApiAdapters::GithubPullRequestAdapter.should_receive(:new).with do |criteria|
@@ -18,4 +18,3 @@ module Services
     end
   end
 end
-

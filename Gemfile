@@ -40,12 +40,10 @@ group :staging, :production do
 end
 
 def can_load_dot_env?
-  begin
-    gem 'dotenv', '~> 0.9'
-    require 'dotenv'
-    Dotenv.load
-    true
-  rescue LoadError
-    false
-  end
+  gem 'dotenv', '~> 0.9'
+  require 'dotenv'
+  Dotenv.load
+  true
+rescue LoadError
+  false
 end

@@ -6,16 +6,16 @@ module Services::ApiAdapters
   describe GithubPullRequestAdapter do
     context 'When passed a bad request' do
       it 'raises an exception' do
-        expect{Services::ApiAdapters::GithubPullRequestAdapter.new nil}.to raise_exception
+        expect { Services::ApiAdapters::GithubPullRequestAdapter.new nil }.to raise_exception
       end
     end
 
     context 'When passed a valid request' do
-      let(:good_request){Services::Requests::PullsRequest.new 'cbdr', 'CB-Mobile', 'closed', 'production'}
-      let(:adapter) {Services::ApiAdapters::GithubPullRequestAdapter.new good_request}
+      let(:good_request) { Services::Requests::PullsRequest.new 'cbdr', 'CB-Mobile', 'closed', 'production' }
+      let(:adapter) { Services::ApiAdapters::GithubPullRequestAdapter.new good_request }
 
       it 'does not raise an exception' do
-        expect{adapter}.not_to raise_exception
+        expect { adapter }.not_to raise_exception
       end
 
       it 'calls the github api with the correct parameters' do
@@ -42,7 +42,7 @@ module Services::ApiAdapters
 
       context 'and we find some results that are not merged' do
         it 'returns only the merged pull requests' do
-          Github::PullRequests.any_instance.stub(:all).and_return  MockGithubPullRequest.mixed_list
+          Github::PullRequests.any_instance.stub(:all).and_return MockGithubPullRequest.mixed_list
           pulls = adapter.merged_pull_requests
           pulls.count.should == 1
         end
@@ -55,6 +55,5 @@ module Services::ApiAdapters
         end
       end
     end
-
   end
 end

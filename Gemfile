@@ -22,7 +22,6 @@ end
 
 group :development, :test do
   gem 'thin', '~> 1.6'
-  gem 'pry-debugger', '~> 0.2'
 end
 
 group :test do

@@ -1,17 +1,10 @@
 Searchtester::Application.routes.draw do
+  root 'home#index'
+
+  get 'oauth/authorize', to: 'oauth#authorize', as: :oauth_authorize
+  get 'oauth/token', to: 'oauth#token', as: :oauth_token
+  get 'oauth/destroy', to: 'oauth#destroy', as: :oauth_destroy
   get 'deployments', to: 'version#index', as: 'dashboard'
   get 'deployments/:repo_name/:pull_id', to: 'version#index', as: 'version'
   get 'deployments/:repo_name', to: 'version#dashboard', as: 'deployments'
-
-  constraints(host: /scrum.cbmtn.io/) do
-    get '/', to: redirect { |_p, _req| 'https://careerbuilder.mingle.thoughtworks.com/projects/' }
-  end
-
-  constraints(host: /oncall.cbmtn.io/) do
-    get '/', to: redirect { |_p, _req| 'https://cbapi.pagerduty.com/' }
-  end
-
-  constraints(host: /cloud.cbmtn.io/) do
-    get '/', to: redirect { |_p, _req| 'https://console.aws.amazon.com/elasticbeanstalk/home?region=us-east-1#/applications?applicationNameFilter=' }
-  end
 end

@@ -1,4 +1,4 @@
-class VersionController < ApplicationController
+class DeploymentsController < ApplicationController
   def dashboard
     @view_data = DeploymentLogProcedure.new(self, params, session).view_data
   end

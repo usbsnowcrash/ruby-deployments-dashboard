@@ -6,6 +6,10 @@ class OauthController < ApplicationController
   def token
     token = github_api.get_token(params[:code])
     session[:token] = token.token
+    user = Github.new(oauth_token: session[:token]).users.get
+    session[:avatar] = user.avatar_url
+    session[:login] = user.login
+    session[:url] = user.html_url
     redirect_to root_url
   end
 

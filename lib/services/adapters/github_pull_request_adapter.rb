@@ -21,7 +21,7 @@ module Services
 
       def github_api
         Github.new do |config|
-          config.oauth_token = ENV['GITHUB_TOKEN']
+          config.oauth_token = @request.token
           config.org = @request.user
           config.auto_pagination = true
         end

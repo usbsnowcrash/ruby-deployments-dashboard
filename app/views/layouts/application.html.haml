@@ -18,6 +18,19 @@
     = csrf_meta_tags
     = yield :head
   %body
+    .row
+      .large-8.columns
+      .large-4.columns
+        .row
+        - if session[:token].present?
+          .large-6
+            = link_to image_tag(session[:avatar], class: 'gravatar'), session[:url]
+            = session[:login]
+          .large-6
+            = link_to 'Sign Out', oauth_destroy_path
+        - else
+          .large-12
+            = link_to 'Sign In', oauth_authorize_path
     .main-body
       = yield
-    = javascript_include_tag "application"
+    = javascript_include_tag 'application'

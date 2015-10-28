@@ -122,6 +122,7 @@ GEM
       multi_json (~> 1.0)
       multi_xml (~> 0.5)
       rack (~> 1.2)
+    parallel (1.6.1)
     poltergeist (1.4.1)
       capybara (~> 2.1.0)
       cliver (~> 0.2.1)
@@ -226,6 +227,7 @@ DEPENDENCIES
   httparty
   jbuilder (~> 1.2)
   jquery-rails
+  parallel
   poltergeist (~> 1.4.1)
   pry
   rails (= 4.0.0)

@@ -14,6 +14,7 @@ gem 'foundation-rails'
 gem 'httparty'
 gem 'github_api'
 gem 'dotenv-rails'
+gem 'parallel'
 
 group :development do
   gem 'better_errors'

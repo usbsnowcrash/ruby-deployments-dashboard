@@ -1,10 +1,2 @@
-.row
-  .small-12.columns
-    %h1 Home
-.row
-  .small-12.columns
-    Logged in?
-    = session[:token].present?
-    - if session[:token].present?
-      = link_to image_tag(session[:avatar], class: 'gravatar'), session[:url]
-      = session[:login]
+= render 'logged_out' unless session[:token].present?
+= render 'logged_in' if session[:token].present?

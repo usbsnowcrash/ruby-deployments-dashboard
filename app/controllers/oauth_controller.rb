@@ -1,5 +1,8 @@
 class OauthController < ApplicationController
+  skip_before_filter :auth_check
+
   def authorize
+    session.clear
     redirect_to github_api.authorize_url(redirect_uri: oauth_token_url, scope: 'user, repo')
   end
 

@@ -31,7 +31,7 @@ group :test do
   gem 'simplecov', '~> 0.8'
   gem 'poltergeist', '~> 1.4.1'
   gem 'capybara-screenshot', '~> 0.3'
-  gem 'hashie', '~> 2.0'
+  gem 'hashie'
 end
 
 group :staging, :production do

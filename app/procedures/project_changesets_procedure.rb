@@ -14,6 +14,8 @@ class ProjectChangesetsProcedure < BaseProcedure
       config.oauth_token = @session[:token]
       config.org = @params[:user_name]
       config.auto_pagination = true
+      config.client_id = ENV['CLIENT_ID']
+      config.client_secret = ENV['CLIENT_SECRET']
     end
   end
 end

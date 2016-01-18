@@ -10,7 +10,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'figaro'
 gem 'haml-rails'
-gem 'foundation-rails'
+gem 'zurb-foundation'
 gem 'httparty'
 gem 'github_api'
 gem 'dotenv-rails'
@@ -33,7 +33,7 @@ group :test do
   gem 'simplecov', '~> 0.8'
   gem 'poltergeist', '~> 1.4.1'
   gem 'capybara-screenshot', '~> 0.3'
-  gem 'hashie', '~> 2.0'
+  gem 'hashie'
 end
 
 group :staging, :production do

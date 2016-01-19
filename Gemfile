@@ -13,13 +13,12 @@ gem 'haml-rails'
 gem 'zurb-foundation'
 gem 'httparty'
 gem 'github_api'
-gem 'dotenv-rails'
-gem 'parallel'
+gem 'therubyracer'
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'pry'
+  gem 'dotenv-rails'
 end
 
 group :development, :test do

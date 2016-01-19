@@ -1,5 +1,6 @@
 node[:deploy].each do |application, deploy|
   if application.to_s == 'deployments-dashboard' || application.to_s == 'deployments_dashboard'
+    Chef::Log.info("application name #{application.to_s}")
     release_dir  = ::File.expand_path(__FILE__).sub('deploy/before_restart.rb', '')
     Chef::Log.info("release_dir: #{release_dir}")
     user, group  = deploy[:user], deploy[:group]
@@ -13,11 +14,6 @@ node[:deploy].each do |application, deploy|
     execute "Precompiling assets for env: #{rails_env}" do
       cwd release_dir
       command "RAILS_ENV=#{rails_env} bundle exec rake assets:precompile"
-    end
-
-    execute "Migrating Database for env: #{rails_env}" do
-      cwd release_dir
-      command "RAILS_ENV=#{rails_env} bundle exec rake db:migrate"
     end
 
     execute "Ensuring app log is owned by #{user}:#{group}" do

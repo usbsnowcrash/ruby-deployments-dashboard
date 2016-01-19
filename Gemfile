@@ -13,6 +13,7 @@ gem 'haml-rails'
 gem 'zurb-foundation'
 gem 'httparty'
 gem 'github_api'
+gem 'therubyracer'
 
 group :development do
   gem 'better_errors'

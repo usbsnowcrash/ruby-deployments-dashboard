@@ -16,8 +16,6 @@ gem 'github_api'
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'
-  gem 'simplecov'
-  gem 'codeclimate-test-reporter'
 end
 
 group :development do
@@ -25,6 +23,12 @@ group :development do
   gem 'binding_of_caller'
   gem 'dotenv-rails'
   gem 'spring'
+end
+
+group :test do
+  gem 'webmock'
+  gem 'simplecov'
+  gem 'codeclimate-test-reporter'
 end
 
 def can_load_dot_env?

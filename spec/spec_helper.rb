@@ -1,8 +1,4 @@
-#require 'webmock/rspec'
-#WebMock.disable_net_connect!(allow: 'codeclimate.com')
-
-require 'simplecov'
-require 'codeclimate-test-reporter'
+WebMock.disable_net_connect!(allow: 'codeclimate.com')
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
     SimpleCov::Formatter::HTMLFormatter,
     CodeClimate::TestReporter::Formatter
@@ -18,3 +14,6 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 end
+
+ENV['CLIENT_ID'] = 'client_id'
+ENV['CLIENT_SECRET'] = 'client_secret'

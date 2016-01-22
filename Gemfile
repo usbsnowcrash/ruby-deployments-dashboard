@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '~> 4.2'
 gem 'sqlite3'
 gem 'sass-rails', '~> 5.0'
@@ -10,13 +9,15 @@ gem 'therubyracer'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem 'foundation-rails' , '~> 6.1'
+gem 'foundation-rails', '~> 6.1'
 gem 'haml-rails'
 gem 'github_api'
 
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'
+  gem 'simplecov'
+  gem 'codeclimate-test-reporter'
 end
 
 group :development do

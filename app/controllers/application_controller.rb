@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def github_api
     Github.new do |config|
-      config.oauth_token ||= session[:oauth_token] ||= params[:oauth_token]
+      config.oauth_token ||= session[:token] ||= params[:oauth_token]
       config.org = params[:orgination] if params[:orgination].present?
       config.client_id = ENV['CLIENT_ID']
       config.client_secret = ENV['CLIENT_SECRET']

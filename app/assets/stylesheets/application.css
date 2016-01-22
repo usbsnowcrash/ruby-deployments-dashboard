@@ -1,0 +1,51 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require foundation_and_overrides
+
+ */
+.main-body {
+    margin: 1em 0;
+    line-height: 1.5em;
+    font-family: 'Raleway', sans-serif;
+}
+.gravatar {
+    width: 30px;
+    border-radius: 3px;
+    -webkit-box-shadow: 1px 1px 5px 2px rgba(221,221,221,1);
+    -moz-box-shadow: 1px 1px 5px 2px rgba(221,221,221,1);
+    box-shadow: 1px 1px 5px 2px rgba(221,221,221,1);
+    margin: 0 5px;
+}
+.commit {
+    margin-bottom: 1em;
+    border-bottom: 1px solid #eee;
+}
+.end-of-header, .commit-message, .deployment-time {
+    padding-bottom: .5em;
+}
+.repo-header {
+    padding: .5em 0;
+}
+.commit-message, .deployment-time, .deployment-message {
+    margin-top: .5em;
+}
+@media only screen and (min-width: 768px) {
+    .commit-message, .deployment-time, .deployment-message {
+        margin-top: 0;
+    }
+    .deployment-message {
+        padding-bottom: .5em;
+    }
+}

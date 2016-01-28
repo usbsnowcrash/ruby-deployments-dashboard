@@ -1,15 +1,23 @@
 .top-bar
   .top-bar-left
-    %ul.dropdown.menu{'data-dropdown-menu' => ''}
+    %ul.dropdown.menu{ 'data-dropdown-menu' => '' }
       %li.menu-text Deployments Dashboard
   - if session[:token].present?
+    .top-bar-left
+      %ul.menu
+        %li
+          = link_to 'Your Teams', root_path
+        %li
+          = link_to 'Snacks', snacks_path
+        %li
+          = link_to 'Pull Requests', prs_path
     .top-bar-right
       %ul.menu
         %li
           = image_tag(session[:avatar], class: 'gravatar')
         %li
           = link_to 'Sign Out', oauth_destroy_path
-  -else
+  - else
     .top-bar-right
       %ul.menu
         %li

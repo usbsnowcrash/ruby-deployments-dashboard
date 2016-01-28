@@ -1,10 +1,11 @@
 node[:deploy].each do |application, deploy|
   if application.to_s == 'deployments-dashboard' || application.to_s == 'deployments_dashboard'
-    Chef::Log.info("application name #{application.to_s}")
-    release_dir  = ::File.expand_path(__FILE__).sub('deploy/before_restart.rb', '')
+    Chef::Log.info("application name #{application}")
+    release_dir = ::File.expand_path(__FILE__).sub('deploy/before_restart.rb', '')
     Chef::Log.info("release_dir: #{release_dir}")
-    user, group  = deploy[:user], deploy[:group]
-    rails_env    = deploy[:custom_env_vars][:RACK_ENV]
+    user = deploy[:user]
+    group = deploy[:group]
+    rails_env = deploy[:custom_env_vars][:RACK_ENV]
 
     execute 'Ensuring bundle is installed without test and development gems, jobs = 2' do
       cwd release_dir

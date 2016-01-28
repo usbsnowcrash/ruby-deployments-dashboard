@@ -1,0 +1,32 @@
+.row
+  .small-12.columns
+    %h1 ChangeLog
+.row
+  .small-12.columns
+    = @view_data.this_pull.title
+.row
+  .small-12.columns
+    Deployment started
+    = @view_data.this_pull.merged_at.in_time_zone("Eastern Time (US & Canada)").strftime('%m/%d/%Y | %I:%M %p EST')
+
+%br
+.row
+  .small-6.columns.end-of-header
+    = link_to 'Back to all deployments', deployments_path
+  .small-6.columns.end-of-header
+    = link_to 'Compare to previous version', "https://github.com/#{params[:user_name]}/#{params[:repo_name]}/pull/#{params[:pull_id]}/files"
+
+.row
+  .small-12.columns
+    %h2.repo-header
+      = "Changes to #{params[:repo_name]}"
+- @view_data.commits.each do |commit|
+  .row.commit
+    .small-12.large-3.columns
+      - unless commit.author.nil?
+        = image_tag(commit.author.avatar_url, class: 'gravatar')
+      - else
+        = image_tag('gravatar-user-420.png', class: 'gravatar')
+      = commit.commit.author.name
+    .small-12.large-9.columns.commit-message
+      = link_to commit.commit.message, commit.html_url

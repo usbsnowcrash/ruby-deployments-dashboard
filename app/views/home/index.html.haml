@@ -1,0 +1,2 @@
+= render 'logged_out' unless session[:token].present?
+= render 'logged_in' if session[:token].present?

@@ -2,14 +2,15 @@
   .small-12.columns
     %h1
       Pull Requests
-.row.commit
-  .small-12.columns.end-of-header
-    Pull / Title / Date Opened
 .row
-  .large-12.columns
-- @teams.each do |team|
-  = check_box_tag(team.id)
-  = label_tag(team.id, team.name)
+  .accordion
+    %dt.accordion-active.commit.small-12.columns.end-of-header
+      Pull / Title / Date Opened
+    %dd
+      - @teams.each_with_index do |team, i|
+        .small-12.medium-6.large-4.columns{class: (i == (@teams.size - 1) ? 'end' : '') }
+          = check_box_tag(team.id)
+          = label_tag(team.id, team.name)
 
 %br
 - @pulls.each do |pull|

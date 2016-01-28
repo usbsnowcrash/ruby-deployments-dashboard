@@ -1,3 +1,31 @@
 // Place all the styles related to the PullRequests controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.accordion {
+  margin-bottom: 30px;
+  border: none;
+  dd {
+    padding: 20px;
+  }
+  dt {
+    cursor: pointer;
+    padding: 8px 15px;
+    margin: 0;
+    font-weight: bold;
+    &:after {
+      content: "+";
+      padding-right: 5px;
+      color: #008CBA;
+      float: right;
+    }
+  }
+  dt.accordion-active {
+    border: none;
+    &:after {
+      content: "-";
+      padding-right: 5px;
+      color: #008CBA;
+    }
+  }
+}

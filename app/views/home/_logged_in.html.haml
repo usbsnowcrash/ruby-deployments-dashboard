@@ -8,5 +8,9 @@
       = image_tag(team.organization.avatar_url, class: 'gravatar')
       = team.name
     .small-12.large-7.columns.commit-message
-      = link_to 'Pull Requests', team.url
+      = link_to 'Pull Requests', team.url 
+      | 
       = link_to 'Deployment Logs', team.url
+
+.row.small-12.correction
+  *Your

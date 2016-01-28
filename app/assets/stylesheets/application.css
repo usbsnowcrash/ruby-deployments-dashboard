@@ -48,3 +48,12 @@
         padding-bottom: .5em;
     }
 }
+.center{
+    text-align: center;
+}
+
+.correction{
+    color: #AAA;
+    font-size: .6em;
+}
+    

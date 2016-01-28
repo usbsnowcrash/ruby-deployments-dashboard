@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'pull-requests/:teams', to: 'pull_requests#index', as: 'team_prs'
   get 'deployments/:user_name/:repo_name', to: 'deployments#list', as: 'deployments'
   get 'deployments/:user_name/:repo_name/:pull_id', to: 'deployments#details', as: 'deployments_details'
+  get 'snacks', to: 'snacks#index', as: 'snacks'
 
   root 'home#index'
 end

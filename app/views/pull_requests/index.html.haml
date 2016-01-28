@@ -5,11 +5,15 @@
 .row.commit
   .small-12.columns.end-of-header
     Pull / Title / Date Opened
+
+- @teams.each do |team|
+  .row
+    .large-12.columns
+      = check_box_tag(team.id, should_check_box(team.id) , should_check_box(team.id))
+      = label_tag(team.id, "#{team.organization.login} / #{team.name}")
 .row
   .large-12.columns
-- @teams.each do |team|
-  = check_box_tag(team.id)
-  = label_tag(team.id, team.name)
+    %a.button.expand#filter{href: '#'} Filter
 
 %br
 - @pulls.each do |pull|

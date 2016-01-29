@@ -2,7 +2,7 @@
   .small-12.columns
     %h1
       = "#{params[:repo_name]} Deployments".titlecase
-- if @diff[:behind_by] > 0
+- if !@diff.nil? && @diff[:behind_by] > 0
   .row
     .callout.alert
       %h5

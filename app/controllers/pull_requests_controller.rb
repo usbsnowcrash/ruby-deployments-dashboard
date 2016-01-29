@@ -1,8 +1,8 @@
 class PullRequestsController < ApplicationController
-  PullRequest = Struct.new(:user_login, :user_avatar, :title, :pull_number, :url, :created_at)
+  PullRequest = Struct.new(:user_login, :user_avatar, :title, :pull_number, :url, :created_at, :repo_name)
 
   def index
-    @teams = github_api.orgs.teams.list
+    @teams = github_api.orgs.teams.list.sort_by { |team| team.name.downcase }
     @pulls = []
     gather_pull_requests if params[:teams].present?
   end
@@ -53,12 +53,15 @@ class PullRequestsController < ApplicationController
   end
 
   def convert_to_pull_model(pull)
+    info = pull[:html_url].split('/')
+
     PullRequest.new(pull.user.login,
                     pull.user.avatar_url,
                     pull.title,
                     pull.number,
                     pull.url.gsub('api.github','www.github'),
-                    pull.created_at.in_time_zone('Eastern Time (US & Canada)').strftime('%m/%d/%Y | %I:%M %p EST'))
+                    pull.created_at.in_time_zone('Eastern Time (US & Canada)').strftime('%m/%d/%Y | %I:%M %p EST'),
+                    "#{info[4]}/#{info[5]}")
   end
 
 end

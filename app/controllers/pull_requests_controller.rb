@@ -29,7 +29,7 @@ class PullRequestsController < ApplicationController
   end
 
   def repos(team_id)
-    github_api.orgs.teams.repos(team_id)
+    github_api.orgs.teams.repos(team_id).select { |repo| repo[:fork] == false }
   end
 
   def pull_requests(user, repo)

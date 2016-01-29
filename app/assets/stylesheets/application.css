@@ -48,11 +48,13 @@
         padding-bottom: .5em;
     }
 }
-.center{
+.center {
     text-align: center;
 }
-
-.correction{
+.header-title {
+    padding-top: 6px;
+}
+.correction {
     color: #AAA;
     font-size: .6em;
 }

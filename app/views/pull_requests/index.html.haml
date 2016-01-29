@@ -10,7 +10,7 @@
       - @teams.each_with_index do |team, i|
         .small-12.medium-6.large-4.columns{class: (i == (@teams.size - 1) ? 'end' : '') }
           = check_box_tag(team.id, should_check_box(team.id) , should_check_box(team.id))
-          = label_tag(team.id, "#{team.organization.login} / #{team.name}")
+          = label_tag(team.id, "#{ team.organization.login } / #{ team.name }")
       .large-12.columns
         %a.button.expand#filter{href: '#'} Filter
 .row

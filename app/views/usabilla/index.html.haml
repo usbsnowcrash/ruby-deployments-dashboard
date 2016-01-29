@@ -1,0 +1,32 @@
+.row
+  .small-12.columns
+    %h1
+      Usabilla Feedback
+.row
+  .accordion
+    %dt.accordion-active.commit.small-12.columns.end-of-header
+      Large Organizational Groups
+    %dd
+      - @buttons.items.each_with_index do |button, i|
+        .small-12.medium-6.large-4.columns{class: (i == (@buttons.items.size - 1) ? 'end' : '') }
+          = link_to button.name, usabilla_feedback_path(id: button.id)
+
+%br
+- if controller.do_feedback?
+  .row.correction
+    Remember, only angry people write reviews on the internet, so don't take these personally. Your mom wrote the happy ones. 
+  %br
+  - @feedback.items.each do |item|
+    .row.commit
+      .small-12.large-1.columns
+        Rating:
+        = item.rating
+      .small-12.large-2.columns.deployment-message
+        - if item.public_url.present?
+          = link_to controller.reformat_date(item.date), item.public_url
+        - else
+          = controller.reformat_date(item.date)
+      .small-12.large-2.columns.page-viewed
+        = link_to 'On This Page', item.url
+      .small-12.large-6.columns.deployment-time
+        = item.comment

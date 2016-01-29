@@ -60,10 +60,10 @@
 }
 .cat_row {
     text-align: center;
-    margin-bottom: 1em;
 }
 .cat_pix {
     max-height: 200px;
+    margin-bottom: 1em;
 }
 .page-viewed {
     overflow: hidden;

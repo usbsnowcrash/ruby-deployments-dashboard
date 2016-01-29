@@ -33,6 +33,6 @@
         = link_to pull.user_login, "https://www.github.com/#{pull.user_login}"
       .small-12.large-6.columns.deployment-message
         = pull.repo_name
-        = link_to "##{pull.pull_number} #{pull.title}", pull.url
+        = link_to "##{pull.pull_number} #{pull.title}", pull.url, target: '_blank'
       .small-12.large-3.columns.deployment-time
         = pull.created_at

@@ -6,13 +6,13 @@
   .row
     .callout.alert
       %h5
-        You have pending
+        You have
         = @diff[:behind_by]
-        production changes
+        pending production change(s)
       %br
       %a.button#pending{href: "https://github.com/#{params[:user_name]}/#{params[:repo_name]}/compare/production...master?expand=1"} View Pending Changes
       %br
-      %a#deploy{href: "https://github.com/#{params[:user_name]}/#{params[:repo_name]}/compare/production...master?expand=1"} Deploy to production
+      = link_to 'Deploy to production',create_prs_path(user_name:params[:user_name],repo_name:params[:repo_name])
 .row.commit
   .small-12.columns.end-of-header
     Deployer / Title / Deployment Started

@@ -7,6 +7,22 @@ class PullRequestsController < ApplicationController
     gather_pull_requests if params[:teams].present?
   end
 
+  def create
+    @diff = github_api.repos.commits.compare(user:params[:user_name], repo: params[:repo_name], base: 'production', head:'master')
+    pr_titles = []
+    @diff[:commits].each do |commit|
+      pr_titles.push commit.commit[:message].split("\n\n")[1] if commit.commit[:message].start_with?('Merge pull request #')
+    end
+    begin
+      github_api.pull_requests.create(user: params[:user_name], repo: params[:repo_name],
+                                      title: pr_titles.join(','), body: '',
+                                      head: 'master', base: 'production' )
+    rescue Github::Error::UnprocessableEntity
+
+    end
+    redirect_to github_api.pull_requests.all(user: params[:user_name], repo: params[:repo_name], state: 'open', base: 'production')[0][:html_url]
+  end
+
   private
 
   def gather_pull_requests

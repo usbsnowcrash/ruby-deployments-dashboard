@@ -12,6 +12,11 @@ node[:deploy].each do |application, deploy|
       command 'bundle install --without development test --jobs 2'
     end
 
+    execute "Migrating Database for env: #{rails_env}" do
+      cwd release_dir
+      command "RAILS_ENV=#{rails_env} bundle exec rake db:migrate"
+    end
+
     execute "Precompiling assets for env: #{rails_env}" do
       cwd release_dir
       command "RAILS_ENV=#{rails_env} bundle exec rake assets:precompile"

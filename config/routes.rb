@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+  get 'repos/index'
+
   get 'pull_requests/index'
 
   get 'oauth/authorize'
   get 'oauth/token'
   get 'oauth/destroy'
+  get 'repos/:team_id', to: 'repos#index', as: 'repos'
   get 'pull-requests', to: 'pull_requests#index', as: 'prs'
   get 'pull-requests/:teams', to: 'pull_requests#index', as: 'team_prs'
   get 'deployments/:user_name/:repo_name', to: 'deployments#list', as: 'deployments'

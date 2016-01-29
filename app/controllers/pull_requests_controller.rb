@@ -4,7 +4,7 @@ class PullRequestsController < ApplicationController
   def index
     @teams = github_api.orgs.teams.list.sort_by { |team| team.name.downcase }
     @pulls = []
-    gather_pull_requests if params[:teams].present?
+    gather_pull_requests if show_pr_section?
   end
 
   def create
@@ -21,6 +21,10 @@ class PullRequestsController < ApplicationController
 
     end
     redirect_to github_api.pull_requests.all(user: params[:user_name], repo: params[:repo_name], state: 'open', base: 'production')[0][:html_url]
+  end
+
+  def show_pr_section?
+    params[:teams].present?
   end
 
   private

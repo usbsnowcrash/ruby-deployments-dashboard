@@ -9,6 +9,7 @@
       = team.name
     .small-12.large-7.columns.commit-message
       = link_to 'Pull Requests',team_prs_path(teams: team.id)
+      |
       = link_to 'Repositories',repos_path(team_id: team.id)
 .row.small-12.correction
   *Your

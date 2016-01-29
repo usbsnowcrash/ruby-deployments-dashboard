@@ -38,4 +38,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  #Usabilla configurations
+  UsabillaApi.configuration.access_key = ENV['USABILLA_ACCESS_KEY']
+  UsabillaApi.configuration.secret_key = ENV['USABILLA_SECRET_KEY']
 end

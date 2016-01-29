@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get 'deployments/:user_name/:repo_name', to: 'deployments#list', as: 'deployments'
   get 'deployments/:user_name/:repo_name/:pull_id', to: 'deployments#details', as: 'deployments_details'
   get 'snacks', to: 'snacks#index', as: 'snacks'
+  get 'usabilla', to: 'usabilla#index', as: 'usabilla'
+  get 'usabilla/:id', to: 'usabilla#index', as: 'usabilla_feedback'
 
   root 'home#index'
 end

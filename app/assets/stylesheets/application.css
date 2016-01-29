@@ -65,4 +65,8 @@
 .cat_pix {
     max-height: 200px;
 }
+.page-viewed {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
     

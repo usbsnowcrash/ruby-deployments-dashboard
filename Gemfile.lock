@@ -37,6 +37,10 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    adorable_cat (0.0.5)
+      json
+      nokogiri
+      rest-client
     arel (6.0.3)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -234,6 +238,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  adorable_cat
   better_errors
   binding_of_caller
   byebug

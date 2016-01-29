@@ -13,6 +13,7 @@ gem 'foundation-rails', '~> 6.1'
 gem 'haml-rails'
 gem 'github_api'
 gem 'usabilla_api'
+gem 'adorable_cat'
 
 group :development, :test do
   gem 'byebug'

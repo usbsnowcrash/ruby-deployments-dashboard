@@ -21,7 +21,13 @@ class UsabillaController < ApplicationController
   def reformat_date(date_string)
     DateTime.iso8601(date_string).strftime('%b %d, %Y')
   end
+
   def do_feedback?
     params[:id].present?
+  end
+
+  def get_cat_img
+    fact, url = AdorableCat.get_cat_data
+    url
   end
 end

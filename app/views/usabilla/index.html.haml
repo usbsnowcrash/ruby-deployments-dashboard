@@ -16,7 +16,7 @@
   .row.correction
     Remember, only angry people write reviews on the internet, so don't take these personally. Your mom wrote the happy ones. 
   %br
-  - @feedback.items.each do |item|
+  - @feedback.items.each_with_index do |item, i|
     .row.commit
       .small-12.large-1.columns
         Rating:
@@ -30,3 +30,6 @@
         = link_to 'On This Page', item.url
       .small-12.large-6.columns.deployment-time
         = item.comment
+    - if (i != 0) && ((i % 11) == 0)
+      .row.commit.cat_row
+        %img.cat_pix{ src: controller.get_cat_img }

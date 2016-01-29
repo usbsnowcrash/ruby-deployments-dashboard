@@ -2,6 +2,17 @@
   .small-12.columns
     %h1
       = "#{params[:repo_name]} Deployments".titlecase
+- if @diff[:behind_by] > 0
+  .row
+    .callout.alert
+      %h5
+        You have pending
+        = @diff[:behind_by]
+        production changes
+      %br
+      %a.button#pending{href: "https://github.com/#{params[:user_name]}/#{params[:repo_name]}/compare/production...master?expand=1"} View Pending Changes
+      %br
+      %a#deploy{href: "https://github.com/#{params[:user_name]}/#{params[:repo_name]}/compare/production...master?expand=1"} Deploy to production
 .row.commit
   .small-12.columns.end-of-header
     Deployer / Title / Deployment Started

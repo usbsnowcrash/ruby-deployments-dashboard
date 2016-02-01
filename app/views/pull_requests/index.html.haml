@@ -4,7 +4,7 @@
       Pull Requests
 .row
   .accordion
-    %dt.commit.small-12.columns
+    %dt.accordion-active.commit.small-12.columns
       Team Filter
     %dd
       - @teams.each_with_index do |team, i|
@@ -32,4 +32,4 @@
       .small-12.large-3.columns.deployment-message
         = link_to "##{pull.pull_number} #{pull.title}", pull.url, target: '_blank'
       .small-12.large-3.columns.deployment-time
-        = pull.created_at
+        = days_ago(pull.created_at)

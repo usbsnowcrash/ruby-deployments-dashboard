@@ -46,6 +46,7 @@ class PullRequestsController < ApplicationController
         @pulls << convert_to_pull_model(pull)
       end
     end
+    @pulls.sort_by! { |pull| pull.created_at }
   end
 
   def repos(team_id)
@@ -62,7 +63,7 @@ class PullRequestsController < ApplicationController
                     pull.title,
                     pull.number,
                     pull.html_url,
-                    pull.created_at.in_time_zone('Eastern Time (US & Canada)').strftime('%m/%d/%Y | %I:%M %p EST'),
+                    pull.created_at,
                     pull.head.repo.name)
   end
 end

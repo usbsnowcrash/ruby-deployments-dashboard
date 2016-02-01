@@ -15,7 +15,7 @@ class PullRequestsController < ApplicationController
     end
     begin
       github_api.pull_requests.create(user: params[:user_name], repo: params[:repo_name],
-                                      title: pr_titles.join(','), body: '',
+                                      title: pr_titles.join('; '), body: '',
                                       head: 'master', base: 'production' )
     rescue Github::Error::UnprocessableEntity
 
@@ -63,9 +63,12 @@ class PullRequestsController < ApplicationController
                     pull.user.avatar_url,
                     pull.title,
                     pull.number,
-                    pull.url.gsub('api.github','www.github'),
+                    pull.html_url,
                     pull.created_at.in_time_zone('Eastern Time (US & Canada)').strftime('%m/%d/%Y | %I:%M %p EST'),
-                    "#{info[4]}/#{info[5]}")
+                    pull.head.repo.name)
   end
 
+  def get_pr_url(pull)
+
+  end
 end

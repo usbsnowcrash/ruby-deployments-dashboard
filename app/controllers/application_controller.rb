@@ -15,6 +15,9 @@ class ApplicationController < ActionController::Base
       config.client_id = ENV['CLIENT_ID']
       config.client_secret = ENV['CLIENT_SECRET']
       config.auto_pagination = true
+      config.stack do |builder|
+        builder.use Faraday::HttpCache, store: Rails.cache
+      end
     end
   end
 end

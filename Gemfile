@@ -14,6 +14,7 @@ gem 'haml-rails'
 gem 'github_api'
 gem 'usabilla_api'
 gem 'adorable_cat'
+gem 'faraday-http-cache'
 
 group :development, :test do
   gem 'byebug'

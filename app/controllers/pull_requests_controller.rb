@@ -57,8 +57,6 @@ class PullRequestsController < ApplicationController
   end
 
   def convert_to_pull_model(pull)
-    info = pull[:html_url].split('/')
-
     PullRequest.new(pull.user.login,
                     pull.user.avatar_url,
                     pull.title,
@@ -66,9 +64,5 @@ class PullRequestsController < ApplicationController
                     pull.html_url,
                     pull.created_at.in_time_zone('Eastern Time (US & Canada)').strftime('%m/%d/%Y | %I:%M %p EST'),
                     pull.head.repo.name)
-  end
-
-  def get_pr_url(pull)
-
   end
 end

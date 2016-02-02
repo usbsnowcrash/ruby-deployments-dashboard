@@ -34,8 +34,8 @@ class UsabillaController < ApplicationController
   end
 
   def get_cat_count
-    if params[:count].present? && (params[:count].to_i > 10 )
-      params[:count].to_i 
+    if params[:count].present? && (params[:count].to_i > 10)
+      params[:count].to_i
     else
       10
     end

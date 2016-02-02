@@ -9,11 +9,6 @@ class UsabillaController < ApplicationController
   end
 
   def cats
-    if params[:count].present? && (params[:count].to_i > 10 )
-      params[:count].to_i 
-    else
-      10
-    end
   end
 
   def get_button_names

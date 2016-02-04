@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'snacks', to: 'google_forms#index', as: 'snacks'
   get 'usabilla', to: 'usabilla#index', as: 'usabilla'
   get 'usabilla/:id', to: 'usabilla#index', as: 'usabilla_feedback'
+  get 'usabilla/cats/:count', to: 'usabilla#cats', as: 'usabilla_cats'
 
   root 'home#index'
 end

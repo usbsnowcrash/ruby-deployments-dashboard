@@ -10,27 +10,12 @@ setupFilterButton = ->
 setupAccordion = ->
   $('.accordion > dt').on 'click', ->
     target = $(this).next()
-    if !this.hasClass('accordion-active')
-      this.addClass 'accordion-active'
+    if !$(this).hasClass('accordion-active')
+      $(this).addClass 'accordion-active'
       target.addClass('active').slideDown 'fast'
     else
       target.slideUp('fast').removeClass 'active'
-      this.removeClass 'accordion-active'
-
-
-(($) ->
-  jQuery('.accordion > dt').on 'click', ->
-    $this = $(this)
-    $target = $this.next()
-    if !$this.hasClass('accordion-active')
-      $this.addClass 'accordion-active'
-      $target.addClass('active').slideDown 'fast'
-    else
-      $target.slideUp('fast').removeClass 'active'
-      $this.removeClass 'accordion-active'
-    false
-  return
-) jQuery
+      $(this).removeClass 'accordion-active'
 
 
 $ ->

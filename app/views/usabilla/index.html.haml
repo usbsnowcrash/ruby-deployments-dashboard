@@ -42,3 +42,7 @@
     - if (i != 0) && ((i % 11) == 0)
       .row.commit.cat_row
         %img.cat_pix{ src: controller.get_cat_img }
+
+
+  .row.correction
+    = link_to 'Halp, I need moar cats', usabilla_cats_path(count: @buttons.items.size)

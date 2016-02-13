@@ -1,18 +1,38 @@
 .top-bar
-  .top-bar-left
-    %ul.dropdown.menu{'data-dropdown-menu' => ''}
-      %li.menu-text Deployments Dashboard
-  - if session[:token].present?
-    .top-bar-right
-      %ul.menu
-        %li
-          = image_tag(session[:avatar], class: 'gravatar')
-        %li
-          = link_to 'Sign Out', oauth_destroy_path
-  -else
-    .top-bar-right
-      %ul.menu
-        %li
-          = image_tag('gravatar-user-420.png', class: 'gravatar')
-        %li
-          = link_to 'Sign In', oauth_authorize_path
+  .top-bar-title
+    .top-bar-left.header-title
+      %span{"data-hide-for" => "medium", "data-responsive-toggle" => "responsive-menu"}
+        %span.menu-icon.dark{"data-toggle" => ""} 
+      %strong Deployments Dashboard
+  #responsive-menu
+    - if session[:token].present?
+      .top-bar-left
+        %ul.dropdown.menu{"data-dropdown-menu" => ""}
+          %li
+            = link_to 'Your Teams', root_path
+          %li
+            = link_to 'Snacks', snacks_path
+          %li
+            = link_to 'Pull Requests', prs_path
+          %li
+            = link_to 'Feedback', usabilla_path
+          %li
+            = link_to 'External'
+            %ul.menu.vertical
+              %li
+                = link_to 'Split Dashboard', 'http://m-car-ins.cbmtn.io/split', target: '_blank'
+              %li 
+                = link_to 'Consumer Dashboard', 'http://oncall.cbmtn.io/', target: '_blank'
+      .top-bar-right
+        %ul.menu
+          %li
+            = image_tag(session[:avatar], class: 'gravatar')
+          %li
+            = link_to 'Sign Out', oauth_destroy_path
+    - else
+      .top-bar-right
+        %ul.dropdown.menu{"data-dropdown-menu" => ""}
+          %li
+            = image_tag('gravatar-user-420.png', class: 'gravatar')
+          %li
+            = link_to 'Sign In', oauth_authorize_path

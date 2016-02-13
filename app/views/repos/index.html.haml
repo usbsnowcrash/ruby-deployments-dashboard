@@ -1,0 +1,10 @@
+.row
+  .small-12.columns
+    %h1
+      = @team_name
+- @repos.each do |repo|
+  .row.commit
+    .small-12.large-5.columns
+      = repo[:full_name]
+    .small-12.large-7.columns.commit-message
+      = link_to 'Deployment Log',deployments_path(user_name: repo[:html_url].gsub('https://github.com/','').split('/')[0] , repo_name: repo[:html_url].gsub('https://github.com/','').split('/')[1])

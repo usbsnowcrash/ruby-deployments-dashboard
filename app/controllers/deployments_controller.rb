@@ -4,6 +4,11 @@ class DeploymentsController < ApplicationController
 
   def list
     @pulls = merged_pull_requests
+    begin
+      @diff = github_api.repos.commits.compare(user: params[:user_name], repo: params[:repo_name], base: 'master', head: 'production')
+    rescue Github::Error::NotFound
+      @diff = nil
+    end
   end
 
   def details

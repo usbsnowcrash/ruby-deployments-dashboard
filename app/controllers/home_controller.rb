@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   def index
     @teams = []
     if session[:token].present?
-      @teams = github_api.orgs.teams.list
+      @teams = github_api.orgs.teams.list.sort_by { |team| team.name.downcase }
     end
   end
 end

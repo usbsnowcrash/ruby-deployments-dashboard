@@ -2,6 +2,17 @@
   .small-12.columns
     %h1
       = "#{params[:repo_name]} Deployments".titlecase
+- if !@diff.nil? && @diff[:behind_by] > 0
+  .row
+    .callout.alert
+      %h5
+        You have
+        = @diff[:behind_by]
+        pending production change(s)
+      %br
+      %a.button#pending{ href: "https://github.com/#{params[:user_name]}/#{params[:repo_name]}/compare/production...master?expand=1", target: '_blank' } View Pending Changes
+      %br
+      = link_to 'Deploy to production', create_prs_path(user_name:params[:user_name],repo_name:params[:repo_name]), target: '_blank'
 .row.commit
   .small-12.columns.end-of-header
     Deployer / Title / Deployment Started

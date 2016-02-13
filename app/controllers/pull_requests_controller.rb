@@ -8,7 +8,7 @@ class PullRequestsController < ApplicationController
   end
 
   def create
-    @diff = github_api.repos.commits.compare(user:params[:user_name], repo: params[:repo_name], base: 'production', head:'master')
+    @diff = github_api.repos.commits.compare(user: params[:user_name], repo: params[:repo_name], base: 'production', head: 'master')
     pr_titles = []
     @diff[:commits].each do |commit|
       pr_titles.push commit.commit[:message].split("\n\n")[1] if commit.commit[:message].start_with?('Merge pull request #')
@@ -16,7 +16,7 @@ class PullRequestsController < ApplicationController
     begin
       github_api.pull_requests.create(user: params[:user_name], repo: params[:repo_name],
                                       title: pr_titles.join('; '), body: '',
-                                      head: 'master', base: 'production' )
+                                      head: 'master', base: 'production')
     rescue Github::Error::UnprocessableEntity
 
     end
@@ -46,7 +46,7 @@ class PullRequestsController < ApplicationController
         @pulls << convert_to_pull_model(pull)
       end
     end
-    @pulls.sort_by! { |pull| pull.created_at }
+    @pulls.sort_by!(&:created_at)
   end
 
   def repos(team_id)

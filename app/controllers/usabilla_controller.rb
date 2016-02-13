@@ -1,8 +1,6 @@
 class UsabillaController < ApplicationController
-
-
   def index
-    @buttons = get_button_names
+    @buttons = button_names
 
     @feedback = []
     gather_feedback if do_feedback?
@@ -11,7 +9,9 @@ class UsabillaController < ApplicationController
   def cats
   end
 
-  def get_button_names
+  private
+
+  def button_names
     UsabillaApi.websites_button.retrieve(params)
   end
 
@@ -28,12 +28,12 @@ class UsabillaController < ApplicationController
     params[:id].present?
   end
 
-  def get_cat_img
+  def cat_img
     fact, url = AdorableCat.get_cat_data
     url
   end
 
-  def get_cat_count
+  def cat_count
     if params[:count].present? && (params[:count].to_i > 10)
       params[:count].to_i
     else

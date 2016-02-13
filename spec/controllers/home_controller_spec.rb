@@ -8,8 +8,8 @@ RSpec.describe HomeController, type: :controller do
     describe 'GET #index' do
       it 'fetches the list of teams' do
         get :index
-        expect(WebMock).to have_requested(:get, 'https://api.github.com/user/teams?access_token=example_token').
-            to_return(:status => 200, :body => '', :headers => {})
+        expect(WebMock).to have_requested(:get, 'https://api.github.com/user/teams?access_token=example_token')
+          .to_return(status: 200, body: '', headers: {})
         expect(response).to render_template(:index)
       end
     end
@@ -23,6 +23,4 @@ RSpec.describe HomeController, type: :controller do
       end
     end
   end
-
-
 end

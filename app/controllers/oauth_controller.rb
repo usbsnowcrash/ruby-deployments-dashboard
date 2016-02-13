@@ -7,18 +7,14 @@ class OauthController < ApplicationController
   end
 
   def token
-    begin
-      @token = github_api.get_token(params[:code])
-      @user = github_api.users.get(oauth_token: @token.token)
-      @teams = github_api.orgs.teams.list(oauth_token: @token.token)
-      build_session
-      redirect_to root_url
-    rescue OAuth2::Error
-      flash[:notice] = 'Error during login'
-      redirect_to oauth_destroy_path
-    end
-
-
+    @token = github_api.get_token(params[:code])
+    @user = github_api.users.get(oauth_token: @token.token)
+    @teams = github_api.orgs.teams.list(oauth_token: @token.token)
+    build_session
+    redirect_to root_url
+  rescue OAuth2::Error
+    flash[:notice] = 'Error during login'
+    redirect_to oauth_destroy_path
   end
 
   def destroy
@@ -38,5 +34,4 @@ class OauthController < ApplicationController
       session[:teams] << team[:id]
     end
   end
-
 end

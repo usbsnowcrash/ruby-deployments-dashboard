@@ -71,8 +71,8 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # Do not dump schema after migrations.
-  #config.active_record.dump_schema_after_migration = false
-  #Usabilla configurations
+  # config.active_record.dump_schema_after_migration = false
+  # Usabilla configurations
   UsabillaApi.configuration.access_key = ENV['USABILLA_ACCESS_KEY']
   UsabillaApi.configuration.secret_key = ENV['USABILLA_SECRET_KEY']
 end

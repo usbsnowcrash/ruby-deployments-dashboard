@@ -5,10 +5,10 @@ class DeploymentsController < ApplicationController
   def list
     @pulls = merged_pull_requests
     begin
-      @diff = github_api.repos.commits.compare(user: params[:user_name], repo: params[:repo_name], base: 'master', head: 'production')
+      @diff = github_api.repos.commits.compare(user: params[:user_name], repo: params[:repo_name], base: 'production', head: 'master')
       prs_behind = 0
       @diff[:commits].each do |commit|
-        prs_behind += 1
+        prs_behind += 1 if commit.commit[:message].start_with?('Merge pull request #')
       end
       @behind_by = prs_behind
     rescue Github::Error::NotFound

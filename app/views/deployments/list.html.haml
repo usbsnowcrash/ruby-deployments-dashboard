@@ -7,7 +7,7 @@
     .callout.alert
       %h5
         You have
-        = @diff[:behind_by]
+        = @behind_by
         pending production change(s)
       %br
       %a.button#pending{ href: "https://github.com/#{params[:user_name]}/#{params[:repo_name]}/compare/production...master?expand=1", target: '_blank' } View Pending Changes

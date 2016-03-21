@@ -9,8 +9,6 @@ class UsabillaController < ApplicationController
   def cats
   end
 
-  private
-
   def button_names
     UsabillaApi.websites_button.retrieve(params)
   end

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :auth_check
 
   def auth_check
-    redirect_to oauth_destroy_path unless session[:token].present? && member_of_team?
+    redirect_to oauth_destroy_path(next: request.fullpath) unless session[:token].present? && member_of_team?
   end
 
   private

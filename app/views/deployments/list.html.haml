@@ -26,5 +26,6 @@
       = link_to pull.title, deployments_details_path(pull_id: pull.pull_number)
     .small-12.large-3.columns.deployment-time
       = pull.merged_at
-      %br
-      %a.button.alert.rollback.tiny{ href: revert_path(commit: pull.commit), target: '_blank' } ⚠️ Revert to this version️
+      -if index == 0
+        %br
+        %a.button.alert.rollback.tiny{ href: rollback_path(commit: pull.rollback_commit), target: '_blank' } ⚠️ Revert PR ##{ pull.pull_number }

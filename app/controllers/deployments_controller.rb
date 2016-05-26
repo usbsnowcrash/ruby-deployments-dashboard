@@ -1,6 +1,6 @@
 class DeploymentsController < ApplicationController
   DetailsViewData = Struct.new(:this_pull, :commits)
-  PullRequest = Struct.new(:user_login, :user_avatar, :title, :pull_number, :merged_at, :commit)
+  PullRequest = Struct.new(:user_login, :user_avatar, :title, :pull_number, :merged_at, :rollback_commit)
 
   def list
     @pulls = merged_pull_requests
@@ -27,6 +27,7 @@ class DeploymentsController < ApplicationController
   def merged_pull_requests
     pulls = []
     pull_requests.each do |pull|
+      pulls.last.rollback_commit = pull.head.sha unless pulls.last.nil?
       pulls << convert_to_pull_model(pull) unless pull.merged_at.nil?
     end
     pulls
@@ -41,7 +42,6 @@ class DeploymentsController < ApplicationController
                     pull.user.avatar_url,
                     pull.title,
                     pull.number,
-                    pull.merged_at.in_time_zone('Eastern Time (US & Canada)').strftime('%m/%d/%Y | %I:%M %p EST'),
-                    pull.head.sha)
+                    pull.merged_at.in_time_zone('Eastern Time (US & Canada)').strftime('%m/%d/%Y | %I:%M %p EST'))
   end
 end

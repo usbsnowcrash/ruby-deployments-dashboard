@@ -17,7 +17,7 @@
   .small-12.columns.end-of-header
     Deployer / Title / Deployment Started
 %br
-- @pulls.each do |pull|
+- @pulls.each_with_index do |pull, index|
   .row.commit
     .small-12.large-3.columns
       = image_tag(pull.user_avatar, class: 'gravatar')
@@ -26,3 +26,6 @@
       = link_to pull.title, deployments_details_path(pull_id: pull.pull_number)
     .small-12.large-3.columns.deployment-time
       = pull.merged_at
+      -if index == 0
+        %br
+        %a.button.alert.rollback.tiny{ href: rollback_path(commit: pull.rollback_commit), target: '_blank' } ⚠️ Revert PR ##{ pull.pull_number }

@@ -1,0 +1,11 @@
+.row
+  .small-12.columns
+    %h1
+      = 'Rollback instructions'
+.row
+  .small-12.columns
+    %h5
+      ⚠ Caution the following will rollback this PR.  This will not show in the deployment history!
+.row.commit
+  %code
+    git checkout production; git pull; git reset --soft #{ params[:commit] }; git push -f --no-verify origin production

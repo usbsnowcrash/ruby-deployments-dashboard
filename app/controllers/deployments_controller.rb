@@ -1,6 +1,6 @@
 class DeploymentsController < ApplicationController
   DetailsViewData = Struct.new(:this_pull, :commits)
-  PullRequest = Struct.new(:user_login, :user_avatar, :title, :pull_number, :merged_at)
+  PullRequest = Struct.new(:user_login, :user_avatar, :title, :pull_number, :merged_at, :rollback_commit)
 
   def list
     @pulls = merged_pull_requests
@@ -22,11 +22,14 @@ class DeploymentsController < ApplicationController
     @view_data = DetailsViewData.new(this_pull, commits.select { |i| i.commit.message.downcase.include?('pull request') })
   end
 
+  def rollback;end
+
   private
 
   def merged_pull_requests
     pulls = []
     pull_requests.each do |pull|
+      pulls.last.rollback_commit = pull.head.sha unless pulls.last.nil?
       pulls << convert_to_pull_model(pull) unless pull.merged_at.nil?
     end
     pulls

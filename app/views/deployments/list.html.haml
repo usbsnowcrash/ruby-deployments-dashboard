@@ -28,7 +28,7 @@
       = pull.merged_at
   .row.commit
     .small-12.large-3.columns
-      Revert to PR ##{ pull.pull_number }
+      To redeploy to PR ##{ pull.pull_number }, use this command:
     .small-12.large-6.columns
       git checkout production; git pull; git reset --soft #{ pull.commit }; git push -f --no-verify origin production
     .small-12.large-3.columns

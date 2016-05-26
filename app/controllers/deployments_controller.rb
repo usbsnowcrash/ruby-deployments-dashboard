@@ -1,6 +1,6 @@
 class DeploymentsController < ApplicationController
   DetailsViewData = Struct.new(:this_pull, :commits)
-  PullRequest = Struct.new(:user_login, :user_avatar, :title, :pull_number, :merged_at)
+  PullRequest = Struct.new(:user_login, :user_avatar, :title, :pull_number, :merged_at, :commit)
 
   def list
     @pulls = merged_pull_requests
@@ -41,6 +41,7 @@ class DeploymentsController < ApplicationController
                     pull.user.avatar_url,
                     pull.title,
                     pull.number,
-                    pull.merged_at.in_time_zone('Eastern Time (US & Canada)').strftime('%m/%d/%Y | %I:%M %p EST'))
+                    pull.merged_at.in_time_zone('Eastern Time (US & Canada)').strftime('%m/%d/%Y | %I:%M %p EST'),
+                    pull.head.sha)
   end
 end

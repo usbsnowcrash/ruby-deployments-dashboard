@@ -27,4 +27,4 @@
     .small-12.large-3.columns.deployment-time
       = pull.merged_at
       %br
-      %a.button.alert.rollback.tiny{ href: rollback_path(commit: pull.commit), target: '_blank' } ⚠️ Redeploy ⚠️
+      %a.button.alert.rollback.tiny{ href: revert_path(commit: pull.commit), target: '_blank' } ⚠️ Revert to this version️

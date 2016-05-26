@@ -22,7 +22,7 @@ class DeploymentsController < ApplicationController
     @view_data = DetailsViewData.new(this_pull, commits.select { |i| i.commit.message.downcase.include?('pull request') })
   end
 
-  def rollback;end
+  def revert;end
 
   private
 

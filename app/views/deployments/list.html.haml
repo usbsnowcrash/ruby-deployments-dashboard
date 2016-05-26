@@ -17,7 +17,7 @@
   .small-12.columns.end-of-header
     Deployer / Title / Deployment Started
 %br
-- @pulls.each do |pull|
+- @pulls.each_with_index do |pull, index|
   .row.commit
     .small-12.large-3.columns
       = image_tag(pull.user_avatar, class: 'gravatar')
@@ -26,9 +26,5 @@
       = link_to pull.title, deployments_details_path(pull_id: pull.pull_number)
     .small-12.large-3.columns.deployment-time
       = pull.merged_at
-  .row.commit
-    .small-12.large-3.columns
-      Revert to PR ##{ pull.pull_number }
-    .small-12.large-6.columns
-      git checkout production; git pull; git reset --soft #{ pull.commit }; git push -f --no-verify origin production
-    .small-12.large-3.columns
+      %br
+      %a.button.alert.rollback.tiny{ href: rollback_path(commit: pull.commit), target: '_blank' } ⚠️ Redeploy ⚠️

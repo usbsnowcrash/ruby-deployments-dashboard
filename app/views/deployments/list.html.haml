@@ -26,3 +26,9 @@
       = link_to pull.title, deployments_details_path(pull_id: pull.pull_number)
     .small-12.large-3.columns.deployment-time
       = pull.merged_at
+  .row.commit
+    .small-12.large-3.columns
+      Revert PR ##{ pull.pull_number } with this command:
+    .small-12.large-6.columns
+      git checkout production; git pull; git reset --soft #{ pull.rollback_commit }; git push -f --no-verify origin production
+    .small-12.large-3.columns

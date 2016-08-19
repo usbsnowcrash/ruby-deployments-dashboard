@@ -1,5 +1,10 @@
 - cat_count = controller.cat_count
 
 - for i in 0..cat_count do
-  .row.commit.cat_row
-    %img.cat_pix{ src: controller.cat_img }
+  - cat_fact = controller.cat_information
+  .row.commit
+    .small-12.medium-6.columns.cat_row
+      %img.cat_pix{ src: cat_fact[1] }
+    .small-12.medium-6.columns
+      = cat_fact[0]
+      

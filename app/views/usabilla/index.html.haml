@@ -40,8 +40,12 @@
       .small-12.large-6.columns
         = item.comment
     - if (i != 0) && ((i % 11) == 0)
-      .row.commit.cat_row
-        %img.cat_pix{ src: controller.cat_img }
+      - cat_fact = controller.cat_information
+      .row.commit
+        .small-12.medium-6.columns.cat_row
+          %img.cat_pix{ src: cat_fact[1] }
+        .small-12.medium-6.columns
+          = cat_fact[0]
 
 
   .row.correction

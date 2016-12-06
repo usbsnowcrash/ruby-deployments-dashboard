@@ -58,12 +58,13 @@ class PullRequestsController < ApplicationController
   end
 
   def convert_to_pull_model(pull)
+    name = (pull.head && pull.head.repo && pull.head.repo.name) ? pull.head.repo.name : ''
     PullRequest.new(pull.user.login,
                     pull.user.avatar_url,
                     pull.title,
                     pull.number,
                     pull.html_url,
                     pull.created_at,
-                    pull.head.repo.name)
+                    name)
   end
 end

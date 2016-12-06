@@ -26,9 +26,8 @@ class UsabillaController < ApplicationController
     params[:id].present?
   end
 
-  def cat_img
-    fact, url = AdorableCat.get_cat_data
-    url
+  def cat_information
+    AdorableCat.get_cat_data
   end
 
   def cat_count

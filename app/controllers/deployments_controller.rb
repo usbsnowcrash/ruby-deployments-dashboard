@@ -7,8 +7,13 @@ class DeploymentsController < ApplicationController
     begin
       @diff = github_api.repos.commits.compare(user: params[:user_name], repo: params[:repo_name], base: 'production', head: 'master')
       prs_behind = 0
+      @pr_titles = []
       @diff[:commits].each do |commit|
-        prs_behind += 1 if commit.commit[:message].start_with?('Merge pull request #')
+        if commit.commit[:message].start_with?('Merge pull request #')
+          prs_behind += 1
+          number = commit.commit[:message].match(/\#(\d+)/)
+          @pr_titles << { title: commit.commit[:message].split("\n\n")[1], number: number[1] }
+        end
       end
       @behind_by = prs_behind
     rescue Github::Error::NotFound

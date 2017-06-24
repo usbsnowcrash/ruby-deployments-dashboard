@@ -8,8 +8,12 @@
       %h5
         You have
         = @behind_by
-        pending production change(s)
-      %br
+        pending production change(s):
+      %ol
+        - @pr_titles.each do |pr|
+          %li{ style: 'margin-left: 20px' }
+            %a{ href: "https://github.com/#{params[:user_name]}/#{params[:repo_name]}/pull/#{pr[:number]}" }
+              = pr[:title]
       %a.button#pending{ href: "https://github.com/#{params[:user_name]}/#{params[:repo_name]}/compare/production...master?expand=1", target: '_blank' } View Pending Changes
       %br
       = link_to 'Deploy to production', create_prs_path(user_name:params[:user_name],repo_name:params[:repo_name]), target: '_blank'

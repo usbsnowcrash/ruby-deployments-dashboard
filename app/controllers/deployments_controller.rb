@@ -1,21 +1,22 @@
 class DeploymentsController < ApplicationController
+  before_action :set_branch_name
+
   DetailsViewData = Struct.new(:this_pull, :commits)
   PullRequest = Struct.new(:user_login, :user_avatar, :title, :pull_number, :merged_at, :rollback_commit)
 
   def list
+    @behind_by = 0
+    @pr_titles = []
     @pulls = merged_pull_requests
     begin
-      @diff = github_api.repos.commits.compare(user: params[:user_name], repo: params[:repo_name], base: 'production', head: 'master')
-      prs_behind = 0
-      @pr_titles = []
+      @diff = github_api.repos.commits.compare(user: params[:user_name], repo: params[:repo_name], base: @branch, head: 'master')
       @diff[:commits].each do |commit|
         if commit.commit[:message].start_with?('Merge pull request #')
-          prs_behind += 1
+          @behind_by += 1
           number = commit.commit[:message].match(/\#(\d+)/)
           @pr_titles << { title: commit.commit[:message].split("\n\n")[1], number: number[1] }
         end
       end
-      @behind_by = prs_behind
     rescue Github::Error::NotFound
       @diff = nil
     end
@@ -24,12 +25,17 @@ class DeploymentsController < ApplicationController
   def details
     this_pull = github_api.pull_requests.get(user: params[:user_name], repo: params[:repo_name], number: params[:pull_id])
     commits = github_api.pull_requests.commits(user: params[:user_name], repo: params[:repo_name], number: params[:pull_id])
-    @view_data = DetailsViewData.new(this_pull, commits.select { |i| i.commit.message.downcase.include?('pull request') })
+    @view_data = DetailsViewData.new(this_pull, commits)
   end
 
   def rollback;end
 
   private
+
+  def set_branch_name
+    branches = github_api.repos(user: params[:user_name], repo: params[:repo_name]).branches.list.to_a.map{ |r| r['name'] }
+    @branch = branches.include?('production') ? 'production' : 'master'
+  end
 
   def merged_pull_requests
     pulls = []
@@ -41,7 +47,7 @@ class DeploymentsController < ApplicationController
   end
 
   def pull_requests
-    github_api.pull_requests.all(user: params[:user_name], repo: params[:repo_name], state: 'closed', base: 'production')
+    github_api.pull_requests.all(user: params[:user_name], repo: params[:repo_name], state: 'closed', base: @branch)
   end
 
   def convert_to_pull_model(pull)

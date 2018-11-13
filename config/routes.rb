@@ -13,10 +13,6 @@ Rails.application.routes.draw do
   get 'deployments/:user_name/:repo_name', to: 'deployments#list', as: 'deployments'
   get 'deployments/:user_name/:repo_name/:pull_id', to: 'deployments#details', as: 'deployments_details'
   get 'rollback/:commit', to: 'deployments#rollback', as: 'rollback'
-  get 'snacks', to: 'google_forms#index', as: 'snacks'
-  get 'usabilla', to: 'usabilla#index', as: 'usabilla'
-  get 'usabilla/:id', to: 'usabilla#index', as: 'usabilla_feedback'
-  get 'usabilla/cats/:count', to: 'usabilla#cats', as: 'usabilla_cats'
 
   root 'home#index'
 end
